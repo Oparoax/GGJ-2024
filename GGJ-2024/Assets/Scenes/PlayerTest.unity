@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 189023057}
   - component: {fileID: 189023056}
   - component: {fileID: 189023055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,8 +508,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496323061}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.031999946, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -709,7 +709,7 @@ MonoBehaviour:
   PlayerCamera: {fileID: 602662252}
   floorMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   PlayerInput: {fileID: 2036124934}
   MoveAction:
     m_Name: Move
@@ -724,6 +724,7 @@ MonoBehaviour:
     type: 3}
   IsMoving: 0
   IsGrounded: 0
+  MouseSens: {x: 40, y: 40}
   ForceModifier: 5
   MoveSpeed: 5
-  JumpForce: 5
+  JumpForce: 1
