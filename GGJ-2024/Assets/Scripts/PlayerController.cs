@@ -1,48 +1,101 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-
-public enum MovementDirection
-{
-    Up, 
-    Down, 
-    Left, 
-    Right
-}
+using FixedUpdate = UnityEngine.PlayerLoop.FixedUpdate;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody _playerRB;
+    private Rigidbody _playerRb;
 
-    public PlayerInput _playerInput;
+    public Transform Orientation;
 
-    public InputAction _action;
+    public Camera PlayerCamera;
 
-    [SerializeField]
-    private InputActionReference _forwardAction;
-    private InputActionReference _backAction;
-    private InputActionReference _leftAction;
-    private InputActionReference _rightAction;
+    [SerializeField] LayerMask floorMask;
+
+    public PlayerInput PlayerInput;
+    public InputAction MoveAction;
+    public InputActionReference JumpAction;
+
+    public bool IsMoving;
+    public bool IsGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (_playerRB == null)
+        if (_playerRb == null)
         {
-            _playerRB = GetComponent<Rigidbody>();
+            _playerRb = GetComponent<Rigidbody>();
         }
 
-        _action = _playerInput.actions["Movement"];
+        MoveAction = PlayerInput.actions["Movement"];
     }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+        Jump();
+
+        IsGrounded = GroundCheck();
+
+        _playerRb.drag = IsGrounded ? 0.5f : 0f;
+    }
+
+    RaycastHit _raycastHit;
+
+    private bool GroundCheck()
+    {
+        return Physics.Raycast(gameObject.transform.position, Vector3.down, out _raycastHit, 2f * 0.5f + 0.2f,
+            floorMask);
+    }
+
+    public float ForceModifier = 5f;
+    public float MoveSpeed = 5f;
 
     public void MovePlayer()
     {
+        Vector2 movement = MoveAction.ReadValue<Vector2>();
+
+        if (movement != Vector2.zero)
+        {
+            IsMoving = true;
+
+            float movHor = movement.x;
+            float movVert = movement.y;
+
+            Vector3 inputDir = Orientation.forward * movVert + Orientation.right * movHor;
+
+            Move(MoveSpeed, inputDir, ForceMode.Force);
+        }
+        else
+        {
+            IsMoving = false;
+        }
     }
 
-    void Move(Vector3 force)
+    public float JumpForce = 5f;
+
+    public void Jump()
     {
-        _playerRB.AddForce(force, ForceMode.Impulse);
+        bool jump = JumpAction.action.triggered;
+
+        Debug.Log($"Ground: {IsGrounded}");
+        Debug.Log($"Jump: {jump}");
+
+        if (IsGrounded && jump)
+        {
+            Debug.Log(IsGrounded);
+
+            Move(JumpForce, Vector3.up, ForceMode.Impulse);
+        }
+    }
+
+    void Move(float force, Vector3 direction, ForceMode mode)
+    {
+        _playerRb.AddForce(ForceModifier * force * direction.normalized, mode);
     }
 
 }
