@@ -33,6 +33,8 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
+        _networkAnimator = GameObject.FindWithTag("Model").GetComponent<NetworkAnimator>();
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
