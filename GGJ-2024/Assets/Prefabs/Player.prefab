@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 6138786879276418204}
   - component: {fileID: 5119787530164655275}
   - component: {fileID: 390217011272959191}
+  - component: {fileID: 3764460028187870575}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -357,6 +358,22 @@ MonoBehaviour:
   jumpCooldown: 0.25
   airMultiplier: 1
   readyToJump: 1
+--- !u!114 &3764460028187870575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695269147205622623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fad334ffc3e32b40906ccbbbe4b04e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfBallons: 0
+  OnBalloonCollected:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5125656817525270865
 GameObject:
   m_ObjectHideFlags: 0
