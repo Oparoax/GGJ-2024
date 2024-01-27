@@ -1406,6 +1406,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 132247e859f931c4aa7b1573ab2b86b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 0}
+  _networkObjectCache: {fileID: 0}
   menuBackground: {fileID: 3818079310372306690}
   startMenu: {fileID: 6740423889801763416}
   characterMenu: {fileID: 2733596572475882655}
@@ -1421,6 +1424,11 @@ MonoBehaviour:
   fourthTrack: {fileID: 0}
   fifthTrack: {fileID: 0}
   sixthTrack: {fileID: 0}
+  player: {fileID: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  isPlayer1: 0
+  isPlayer2: 0
 --- !u!1 &6740423889801763416
 GameObject:
   m_ObjectHideFlags: 0

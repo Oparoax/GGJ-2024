@@ -8,6 +8,10 @@ using UnityEngine.InputSystem.HID;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
+using FishNet.Object;
+using FishNet.Connection;
+using FishNet.Object.Synchronizing;
+
 enum ACTIVE_SCREEN
 {
     START,
@@ -17,7 +21,7 @@ enum ACTIVE_SCREEN
     END_GAME
 }
 
-public class UIHandler : MonoBehaviour
+public class UIHandler : NetworkBehaviour
 {
     [Header("Menu Background")]
     [SerializeField] public GameObject menuBackground;
@@ -56,6 +60,24 @@ public class UIHandler : MonoBehaviour
     
     private GameObject _currentScreenObject;
     private AudioSource _currentTrack;
+
+    public GameObject player;
+
+    [SyncVar] public GameObject player1;
+    [SyncVar] public GameObject player2;
+
+    [SyncVar] public bool isPlayer1;
+    [SyncVar] public bool isPlayer2;
+
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        //players = GameObject.FindGameObjectsWithTag("Player");
+
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -129,20 +151,82 @@ public class UIHandler : MonoBehaviour
     public void LeftButtonClick()
     {
         _leftButtonIsClicked = true;
-        ButtonClicked(leftButton);
+
+        // turns blue on locally
+        player.transform.GetChild(1).gameObject.SetActive(true);
+        if (isPlayer1)
+        {
+            RPCUpdatePlayer2(1);
+        }
+        else if (isPlayer2)
+        {
+            RPCUpdatePlayer1(1);
+        }
+
+        RPCUpdateLButtonClicked();
+
     }
 
     public void RightButtonClick()
     {
         _rightButtonIsClicked = true;
-        ButtonClicked(rightButton);
+
+        // turns red on locally
+        player.transform.GetChild(0).gameObject.SetActive(true);
+        if (isPlayer1)
+        {
+            RPCUpdatePlayer2(0);
+        }
+        else if (isPlayer2)
+        {
+            RPCUpdatePlayer1(0);
+        }
+
+        RPCUpdateRButtonClicked();
+
     }
 
-    void ButtonClicked(Button buttonClicked)
+    [ServerRpc(RequireOwnership = false)] private void RPCUpdateLButtonClicked() { LButtonClicked(); }
+
+    [ObserversRpc]
+    void LButtonClicked() // red
     {
-        buttonClicked.interactable = false;
+        player.transform.GetChild(1).gameObject.SetActive(true);
+        leftButton.interactable = false;
     }
-    
+
+    [ServerRpc(RequireOwnership = false)] private void RPCUpdateRButtonClicked() { RButtonClicked(); }
+
+    [ObserversRpc]
+    void RButtonClicked() // blue
+    {
+        player.transform.GetChild(0).gameObject.SetActive(true);
+        rightButton.interactable = false;
+    }
+
+    [ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer1(int num) { UpdatePlayer1(num); }
+
+    [ObserversRpc]
+    void UpdatePlayer1(int num) // red
+    {
+        player1.transform.GetChild(num).gameObject.SetActive(true);
+        
+    }
+
+    [ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer2(int num) { UpdatePlayer2(num); }
+
+    [ObserversRpc]
+    void UpdatePlayer2(int num) // blue
+    {
+        player2.transform.GetChild(num).gameObject.SetActive(true);
+    }
+
+
+
+
+
+
+
     private float _elapsedTime = 0f;
     void LoadingScreen()
     {

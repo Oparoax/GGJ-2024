@@ -323,9 +323,9 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 11
+  <PrefabId>k__BackingField: 4
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 0
+  _scenePathHash: 2175791345
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14797281496072752529
 --- !u!114 &572523022607697290
@@ -1650,7 +1650,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d74573da8458a4b34b0f6adff233c211,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d74573da8458a4b34b0f6adff233c211,
         type: 3}
@@ -2782,7 +2782,7 @@ PrefabInstance:
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _scenePathHash
-      value: 0
+      value: 2175791345
       objectReference: {fileID: 0}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
@@ -3114,6 +3114,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3894605968936760542}
+    - targetCorrespondingSourceObject: {fileID: 1695269147205622623, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5998167257712288819}
   m_SourcePrefab: {fileID: 100100000, guid: c813f2471888c3c4aa61136b98cc459a, type: 3}
 --- !u!114 &673309981427457341 stripped
 MonoBehaviour:
@@ -3220,6 +3224,19 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
+--- !u!114 &5998167257712288819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996372125859365557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70cc1e58c3524a6e86e8a7a17286a49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIHandlerSC: {fileID: 0}
 --- !u!114 &2794188840680863928 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
