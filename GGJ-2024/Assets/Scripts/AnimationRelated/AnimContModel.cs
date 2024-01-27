@@ -26,10 +26,5 @@ public class AnimContModel : MonoBehaviour
         {
             _animator.SetBool("Walking", false);
         }
-
-        if (playerControllerSC.isAttacking)
-        {
-            _networkAnimator.SetTrigger("Attacking");
-        }
     }
 }

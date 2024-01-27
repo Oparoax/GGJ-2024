@@ -1494,6 +1494,11 @@ PrefabInstance:
       objectReference: {fileID: 8029310403975804527}
     - target: {fileID: 390217011272959191, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
+      propertyPath: _networkAnimator
+      value: 
+      objectReference: {fileID: 4341351715294713768}
+    - target: {fileID: 390217011272959191, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
       propertyPath: _addedNetworkObject
       value: 
       objectReference: {fileID: 3896643223565783196}
