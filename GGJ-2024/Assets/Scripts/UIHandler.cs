@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using FishNet.Demo.AdditiveScenes;
@@ -32,6 +33,7 @@ public class UIHandler : MonoBehaviour
     
     [Header("Loading Screen")]
     [SerializeField] public GameObject loadingScreen;
+    [SerializeField] public float waitTime = 3f;
     
     [Header("In Game UI Objects")]
     [SerializeField] public GameObject inGameScreen;
@@ -45,6 +47,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField] public AudioSource thirdTrack;
     [SerializeField] public AudioSource fourthTrack;
     [SerializeField] public AudioSource fifthTrack;
+    [SerializeField] public AudioSource sixthTrack;
 
     private List<GameObject> _screens;
     private List<AudioSource> _tracks;
@@ -94,6 +97,7 @@ public class UIHandler : MonoBehaviour
                 CharacterMenu();
                 break;
             case (ACTIVE_SCREEN.LOADING):
+                LoadingScreen();
                 break;
             case (ACTIVE_SCREEN.IN_GAME):
                 break;
@@ -111,12 +115,12 @@ public class UIHandler : MonoBehaviour
         }
     }
 
-    private bool leftButtonIsClicked = false;
-    private bool rightButtonIsClicked = false;
+    private bool _leftButtonIsClicked = false;
+    private bool _rightButtonIsClicked = false;
 
     void CharacterMenu()
     {
-        if (leftButtonIsClicked && rightButtonIsClicked)
+        if (_leftButtonIsClicked && _rightButtonIsClicked)
         {
             SwitchMenu(ACTIVE_SCREEN.LOADING);
         }
@@ -124,19 +128,32 @@ public class UIHandler : MonoBehaviour
 
     public void LeftButtonClick()
     {
-        leftButtonIsClicked = true;
+        _leftButtonIsClicked = true;
         ButtonClicked(leftButton);
     }
 
     public void RightButtonClick()
     {
-        rightButtonIsClicked = true;
+        _rightButtonIsClicked = true;
         ButtonClicked(rightButton);
     }
 
     void ButtonClicked(Button buttonClicked)
     {
         buttonClicked.interactable = false;
+    }
+    
+    private float _elapsedTime = 0f;
+    void LoadingScreen()
+    {
+        if (_elapsedTime >= waitTime)
+        {
+            SwitchMenu(ACTIVE_SCREEN.IN_GAME);
+        }
+        else
+        {
+            _elapsedTime += Time.deltaTime;
+        }
     }
     
     /// <summary>
@@ -167,8 +184,10 @@ public class UIHandler : MonoBehaviour
                 break;
             case (ACTIVE_SCREEN.END_GAME):
                 SwitchUI(endGameScreen);
-                SwitchTracks(fifthTrack);
+                SwitchTracks(sixthTrack);
                 menuBackground.SetActive(true);
+                break;
+            default:
                 break;
         }
     }
