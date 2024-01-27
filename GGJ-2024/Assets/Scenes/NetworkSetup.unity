@@ -368,6 +368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerParent
       objectReference: {fileID: 0}
+    - target: {fileID: 6582322859922165725, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8200885882264988045, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
         type: 3}
       propertyPath: <SceneId>k__BackingField
@@ -673,7 +678,7 @@ PrefabInstance:
     - target: {fileID: 5337712886149352494, guid: f0d469d50e8515e4ea2368c32d66e8bf,
         type: 3}
       propertyPath: m_Name
-      value: Pickup
+      value: Balloon
       objectReference: {fileID: 0}
     - target: {fileID: 6811126306500535322, guid: f0d469d50e8515e4ea2368c32d66e8bf,
         type: 3}
