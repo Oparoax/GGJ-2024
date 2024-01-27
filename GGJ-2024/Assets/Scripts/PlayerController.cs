@@ -16,6 +16,8 @@ public class PlayerController : NetworkBehaviour
     
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
+
+    [SerializeField] public InputActionReference attack;
     
     [SerializeField] private float dragCoef;
 
@@ -60,6 +62,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
+    public bool isAttacking;
 
     private void Update()
     {
@@ -76,6 +79,15 @@ public class PlayerController : NetworkBehaviour
         //playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
         
         //orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+
+        if (attack.action.triggered)
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            isAttacking = false;
+        }
     }
 
     [SerializeField] private bool isGrounded;
@@ -119,8 +131,6 @@ public class PlayerController : NetworkBehaviour
 
             var inputDir = orientation.forward * movVert + orientation.right * movHor;
 
-            playerModel.transform.eulerAngles = new Vector3(0, playerCamera.transform.rotation.y, 0f);
-
             Move(moveSpeed, inputDir, ForceMode.Force);
         }
         else
@@ -160,5 +170,7 @@ public class PlayerController : NetworkBehaviour
         {
             _playerRb.AddForce(direction.normalized * (forceModifier * force * airMultiplier), mode);
         }
+
+        playerModel.transform.forward = direction.normalized;
     }
 }
