@@ -123,6 +123,9 @@ public class PlayerController : NetworkBehaviour
         {
             isMoving = true;
 
+            _playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+            _playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+
             var movHor = movement.x;
             var movVert = movement.y;
 
@@ -133,6 +136,7 @@ public class PlayerController : NetworkBehaviour
         else
         {
             isMoving = false;
+            _playerRb.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 
