@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.HID;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-enum ACTIVE_UI
+enum ACTIVE_SCREEN
 {
     START,
     CHARACTER,
@@ -49,9 +49,9 @@ public class UIHandler : MonoBehaviour
     private List<GameObject> _screens;
     private List<AudioSource> _tracks;
     
-    private ACTIVE_UI _currentActiveUI = ACTIVE_UI.START;
+    private ACTIVE_SCREEN _currentActiveScreen = ACTIVE_SCREEN.START;
     
-    private GameObject _currentUIObject;
+    private GameObject _currentScreenObject;
     private AudioSource _currentTrack;
 
     // Start is called before the first frame update
@@ -75,29 +75,29 @@ public class UIHandler : MonoBehaviour
         }
 
         menuBackground.SetActive(true);
-        _currentUIObject = startMenu;
+        _currentScreenObject = startMenu;
         _currentTrack = firstTrack;
         
         // Start off with start screen.
-        SwitchMenu(ACTIVE_UI.START);
+        SwitchMenu(ACTIVE_SCREEN.START);
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (_currentActiveUI)
+        switch (_currentActiveScreen)
         {
-            case (ACTIVE_UI.START):
+            case (ACTIVE_SCREEN.START):
                 StartMenu();
                 break;
-            case (ACTIVE_UI.CHARACTER):
+            case (ACTIVE_SCREEN.CHARACTER):
                 CharacterMenu();
                 break;
-            case (ACTIVE_UI.LOADING):
+            case (ACTIVE_SCREEN.LOADING):
                 break;
-            case (ACTIVE_UI.IN_GAME):
+            case (ACTIVE_SCREEN.IN_GAME):
                 break;
-            case (ACTIVE_UI.END_GAME):
+            case (ACTIVE_SCREEN.END_GAME):
                 break;
         }
     }
@@ -107,7 +107,7 @@ public class UIHandler : MonoBehaviour
         //Wait for player to hit a key to progress.
         if (Input.anyKeyDown)
         {
-            SwitchMenu(ACTIVE_UI.CHARACTER);
+            SwitchMenu(ACTIVE_SCREEN.CHARACTER);
         }
     }
 
@@ -118,7 +118,7 @@ public class UIHandler : MonoBehaviour
     {
         if (leftButtonIsClicked && rightButtonIsClicked)
         {
-            SwitchMenu(ACTIVE_UI.LOADING);
+            SwitchMenu(ACTIVE_SCREEN.LOADING);
         }
     }
 
@@ -142,30 +142,30 @@ public class UIHandler : MonoBehaviour
     /// <summary>
     /// Call this to switch between UI in scene.
     /// </summary>
-    void SwitchMenu(ACTIVE_UI newUI)
+    void SwitchMenu(ACTIVE_SCREEN newScreen)
     {
-        _currentActiveUI = newUI;
+        _currentActiveScreen = newScreen;
         
-        switch (newUI)
+        switch (newScreen)
         {
-            case (ACTIVE_UI.START):
+            case (ACTIVE_SCREEN.START):
                 SwitchUI(startMenu);
                 SwitchTracks(firstTrack);
                 break;
-            case (ACTIVE_UI.CHARACTER):
+            case (ACTIVE_SCREEN.CHARACTER):
                 SwitchUI(characterMenu);
                 SwitchTracks(secondTrack);
                 break;
-            case (ACTIVE_UI.LOADING):
+            case (ACTIVE_SCREEN.LOADING):
                 SwitchUI(loadingScreen);
                 SwitchTracks(thirdTrack);
                 break;
-            case (ACTIVE_UI.IN_GAME):
+            case (ACTIVE_SCREEN.IN_GAME):
                 SwitchUI(inGameScreen);
                 SwitchTracks(fourthTrack);
                 menuBackground.SetActive(false);
                 break;
-            case (ACTIVE_UI.END_GAME):
+            case (ACTIVE_SCREEN.END_GAME):
                 SwitchUI(endGameScreen);
                 SwitchTracks(fifthTrack);
                 menuBackground.SetActive(true);
@@ -179,9 +179,9 @@ public class UIHandler : MonoBehaviour
     /// <param name="activeUI"> UI object to be made active. </param>
     void SwitchUI(GameObject activeUI)
     {
-        _currentUIObject.SetActive(false);
+        _currentScreenObject.SetActive(false);
         activeUI.SetActive(true);
-        _currentUIObject = activeUI;
+        _currentScreenObject = activeUI;
     }
 
     /// <summary>
