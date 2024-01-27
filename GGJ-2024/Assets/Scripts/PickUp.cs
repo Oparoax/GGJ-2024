@@ -1,8 +1,9 @@
+using FishNet.Object;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour
+public class PickUp : NetworkBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -11,9 +12,20 @@ public class PickUp : MonoBehaviour
         if (playerInventory != null)
         {
             playerInventory.BalloonCollected();
-            
+
             // May need to use destroy if too many balloons in scene.
-            gameObject.SetActive(false);
+
+            RPCUpdateObjState();
         }
+    }
+
+    [ServerRpc(RequireOwnership = true)] private void RPCUpdateObjState()
+    {
+        UpdateObjState();
+    }
+
+    [ObserversRpc] private void UpdateObjState()
+    {
+        gameObject.SetActive(false);
     }
 }

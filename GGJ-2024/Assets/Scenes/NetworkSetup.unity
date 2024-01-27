@@ -290,6 +290,18 @@ MonoBehaviour:
   port: 2003
   searchTimeout: 10
   automatic: 1
+--- !u!114 &353690603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9041369618105723421, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+    type: 3}
+  m_PrefabInstance: {fileID: 19736779274913593}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &418982314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -358,11 +370,6 @@ PrefabInstance:
       propertyPath: <SceneId>k__BackingField
       value: 9344952671218602685
       objectReference: {fileID: 0}
-    - target: {fileID: 4565236569918865156, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
-        type: 3}
-      propertyPath: _networkObjectCache
-      value: 
-      objectReference: {fileID: 620125839}
     - target: {fileID: 6582322859922165725, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
         type: 3}
       propertyPath: m_Name
@@ -378,40 +385,11 @@ PrefabInstance:
       propertyPath: <SceneId>k__BackingField
       value: 9344952671571393537
       objectReference: {fileID: 0}
-    - target: {fileID: 8200885882264988045, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
-        type: 3}
-      propertyPath: _networkBehaviours.Array.data[0]
-      value: 
-      objectReference: {fileID: 620125841}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1aa3a956baa04e3e806ef5c6b1e02f1, type: 3}
---- !u!114 &620125839 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8200885882264988045, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 418982314}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &620125841 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4565236569918865156, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
-    type: 3}
-  m_PrefabInstance: {fileID: 418982314}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6aa9a0f81730d824b85d661caef93ad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &904593532
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +653,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1426419262014010734, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: _scenePathHash
+      value: 2175791345
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426419262014010734, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: <SceneId>k__BackingField
+      value: 9344952671475940088
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175692277349521179, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: _networkObjectCache
+      value: 
+      objectReference: {fileID: 353690603}
+    - target: {fileID: 2175692277349521179, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: _componentIndexCache
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5337712886149352494, guid: f0d469d50e8515e4ea2368c32d66e8bf,
         type: 3}
       propertyPath: m_Name
@@ -733,6 +731,16 @@ PrefabInstance:
     - target: {fileID: 6811126306500535322, guid: f0d469d50e8515e4ea2368c32d66e8bf,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041369618105723421, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: <SceneId>k__BackingField
+      value: 9344952673669774760
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041369618105723421, guid: f0d469d50e8515e4ea2368c32d66e8bf,
+        type: 3}
+      propertyPath: <IsNested>k__BackingField
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

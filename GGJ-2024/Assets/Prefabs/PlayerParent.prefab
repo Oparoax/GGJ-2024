@@ -511,7 +511,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 11
+  <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 2175791345
   <SceneId>k__BackingField: 0
@@ -571,6 +571,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1695269147205622623, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119787530164655275, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119787530164655275, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionId
+      value: 36840f36-ca77-4213-955e-07b3d4986b21
+      objectReference: {fileID: 0}
+    - target: {fileID: 5119787530164655275, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_ActionName
+      value: Player/Attack[/Mouse/leftButton]
+      objectReference: {fileID: 0}
     - target: {fileID: 5476316083595252318, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _scenePathHash
@@ -616,6 +636,26 @@ PrefabInstance:
       propertyPath: <ParentNetworkObject>k__BackingField
       value: 
       objectReference: {fileID: 3896643223565783196}
+    - target: {fileID: 5476316083595252318, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: SerializedTransformProperties.Rotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476316083595252318, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: SerializedTransformProperties.LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476316083595252318, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: SerializedTransformProperties.LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5476316083595252318, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: SerializedTransformProperties.LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6537575674421113020, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: m_RootOrder
