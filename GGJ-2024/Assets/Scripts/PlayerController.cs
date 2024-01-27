@@ -10,6 +10,8 @@ public class PlayerController : NetworkBehaviour
 {
     private Rigidbody _playerRb;
 
+    [SerializeField] public GameObject playerModel;
+
     [SerializeField] public Transform orientation;
     
     [SerializeField] public PlayerInput playerInput;
@@ -71,9 +73,9 @@ public class PlayerController : NetworkBehaviour
         _rotation.x = Mathf.Clamp(_rotation.x, -90f, 90f);
 
         // TODO: Remove camera rotation.
-        playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
+        //playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
         
-        orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+        //orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
     }
 
     [SerializeField] private bool isGrounded;
@@ -103,7 +105,7 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] private float forceModifier = 5f;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private bool isMoving;
+    [SerializeField] public bool isMoving;
     public void MovePlayer()
     {
         var movement = moveAction.ReadValue<Vector2>();
@@ -116,6 +118,8 @@ public class PlayerController : NetworkBehaviour
             var movVert = movement.y;
 
             var inputDir = orientation.forward * movVert + orientation.right * movHor;
+
+            playerModel.transform.eulerAngles = new Vector3(0, playerCamera.transform.rotation.y, 0f);
 
             Move(moveSpeed, inputDir, ForceMode.Force);
         }
