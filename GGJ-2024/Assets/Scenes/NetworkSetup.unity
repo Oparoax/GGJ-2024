@@ -201,7 +201,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerPrefab
       value: 
-      objectReference: {fileID: 835639591008322803, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+      objectReference: {fileID: 2114845114747042738, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
         type: 3}
     - target: {fileID: 7443408887813606060, guid: 0b650fca685f2eb41a86538aa883e4c1,
         type: 3}
@@ -318,6 +318,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1614414661182312836, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1997930933660598725, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
         type: 3}
       propertyPath: m_RootOrder
@@ -372,6 +377,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114845114747042738, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: _scenePathHash
+      value: 2175791345
+      objectReference: {fileID: 0}
+    - target: {fileID: 2114845114747042738, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: <SceneId>k__BackingField
+      value: 9344952670325819181
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794188840680863928, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: _scenePathHash
+      value: 2175791345
+      objectReference: {fileID: 0}
+    - target: {fileID: 2794188840680863928, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
+        type: 3}
+      propertyPath: <SceneId>k__BackingField
+      value: 9344952671150790411
       objectReference: {fileID: 0}
     - target: {fileID: 7937665917362747166, guid: d1aa3a956baa04e3e806ef5c6b1e02f1,
         type: 3}
