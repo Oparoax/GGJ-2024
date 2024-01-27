@@ -4,7 +4,9 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class PlayerController : MonoBehaviour
+using FishNet.Object;
+
+public class PlayerController : NetworkBehaviour
 {
     private Rigidbody _playerRb;
 
@@ -14,24 +16,49 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public InputAction moveAction;
     
     [SerializeField] private float dragCoef;
-    
-    // Start is called before the first frame update
-    void Start()
+
+
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+
+        if (!IsOwner)
+        {
+            this.gameObject.GetComponent<PlayerController>().enabled = false;
+            return;
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        
+
         if (_playerRb == null)
         {
             _playerRb = GetComponent<Rigidbody>();
         }
-        
+
         moveAction = playerInput.actions["Movement"];
     }
+
+
+    //    // Start is called before the first frame update
+    //    void Start()
+    //{
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.visible = false;
+        
+    //    if (_playerRb == null)
+    //    {
+    //        _playerRb = GetComponent<Rigidbody>();
+    //    }
+        
+    //    moveAction = playerInput.actions["Movement"];
+    //}
+
 
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
+
     private void Update()
     {
         // TODO: Change to gamepad joystick.

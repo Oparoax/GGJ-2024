@@ -327,6 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa9a0f81730d824b85d661caef93ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 0}
+  _networkObjectCache: {fileID: 0}
   orientation: {fileID: 1820046785142849167}
   playerInput: {fileID: 5119787530164655275}
   moveAction:
