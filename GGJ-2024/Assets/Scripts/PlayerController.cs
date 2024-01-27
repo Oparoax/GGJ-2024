@@ -9,20 +9,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody _playerRb;
 
     [SerializeField] public Transform orientation;
-
-    [SerializeField] public Camera playerCamera;
-
-    [SerializeField] LayerMask floorMask;
-
+    
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
-    [SerializeField] public InputActionReference jumpAction;
-
-    [SerializeField] public bool isMoving;
-    [SerializeField] public bool isGrounded;
-
-    [SerializeField] public float dragCoef;
-
+    
+    [SerializeField] private float dragCoef;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -33,61 +25,70 @@ public class PlayerController : MonoBehaviour
         {
             _playerRb = GetComponent<Rigidbody>();
         }
-        dragCoef = _playerRb.drag;
         
         moveAction = playerInput.actions["Movement"];
     }
 
+    [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
-    
     private void Update()
     {
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSens.x;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSens.y;
+        // TODO: Change to gamepad joystick.
+        var mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSens.x;
+        var mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSens.y;
 
         _rotation.x -= mouseY;
         _rotation.y += mouseX;
 
         _rotation.x = Mathf.Clamp(_rotation.x, -90f, 90f);
 
+        // TODO: Remove camera rotation.
         playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
+        
         orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
     }
 
+    [SerializeField] private bool isGrounded;
     private void FixedUpdate()
     {
         MovePlayer();
-        Jump();
 
+        if (jumpAction.action.triggered)
+        {
+            Jump();
+        }
+        
         isGrounded = GroundCheck();
 
-        _playerRb.drag = isGrounded ? dragCoef : 0f;
+        //_playerRb.drag = isGrounded ? dragCoef : 0f;
     }
 
     RaycastHit _raycastHit;
-
+    [SerializeField] LayerMask floorMask;
     private bool GroundCheck()
     {
-        return Physics.Raycast(gameObject.transform.position, Vector3.down, out _raycastHit, 2f * 0.5f + 0.2f,
-            floorMask);
+        return Physics.Raycast(gameObject.transform.position, 
+                            Vector3.down, out _raycastHit, 
+                            2f * 0.5f + 0.2f,
+                                floorMask);
     }
 
-    [SerializeField] public float forceModifier = 5f;
-    [SerializeField] public float moveSpeed = 5f;
-
+    [SerializeField] private float forceModifier = 5f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private bool isMoving;
     public void MovePlayer()
     {
-        Vector2 movement = moveAction.ReadValue<Vector2>();
+        var movement = moveAction.ReadValue<Vector2>();
 
         if (movement != Vector2.zero)
         {
             isMoving = true;
 
-            float movHor = movement.x;
-            float movVert = movement.y;
+            var movHor = movement.x;
+            var movVert = movement.y;
 
-            Vector3 inputDir = orientation.forward * movVert + orientation.right * movHor;
+            var inputDir = orientation.forward * movVert + orientation.right * movHor;
 
             Move(moveSpeed, inputDir, ForceMode.Force);
         }
@@ -97,20 +98,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [SerializeField] public float jumpForce = 5f;
-
+    [SerializeField] private InputActionReference jumpAction;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpCooldown = 2f;
+    [SerializeField] private float airMultiplier = 5f;
+    [SerializeField] private bool readyToJump = true;
     public void Jump()
     {
-        bool jump = jumpAction.action.triggered;
-
-        if (isGrounded && jump)
+        if (isGrounded && readyToJump)
         {
             Move(jumpForce, Vector3.up, ForceMode.Impulse);
+            readyToJump = false;
+            
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
+    }
+
+    private void ResetJump()
+    {
+        readyToJump = true;
     }
 
     void Move(float force, Vector3 direction, ForceMode mode)
     {
-        _playerRb.AddForce(forceModifier * force * direction.normalized, mode);
+        if (isGrounded)
+        {
+            _playerRb.AddForce(direction.normalized * (forceModifier * force) , mode);
+        }
+        else
+        {
+            _playerRb.AddForce(direction.normalized * (forceModifier * force * airMultiplier), mode);
+        }
     }
 }

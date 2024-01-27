@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 2036124934}
   - component: {fileID: 2036124935}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,8 +635,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036124928}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0.5
+  m_Mass: 3
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -705,26 +705,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aa9a0f81730d824b85d661caef93ad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Orientation: {fileID: 1496323062}
-  PlayerCamera: {fileID: 602662252}
-  floorMask:
-    serializedVersion: 2
-    m_Bits: 64
-  PlayerInput: {fileID: 2036124934}
-  MoveAction:
+  orientation: {fileID: 1496323062}
+  playerInput: {fileID: 2036124934}
+  moveAction:
     m_Name: Move
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: aeaa3491-01cc-4b15-adf9-c04e8373ea7e
+    m_Id: 8351ab32-769d-4f92-83fa-e7c28074c906
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  JumpAction: {fileID: 3863988705517655865, guid: 5e67823000d07a0469c39287d9a21608,
+  dragCoef: 5
+  playerCamera: {fileID: 602662252}
+  mouseSens: {x: 40, y: 40}
+  isGrounded: 0
+  floorMask:
+    serializedVersion: 2
+    m_Bits: 64
+  forceModifier: 15
+  moveSpeed: 10
+  isMoving: 0
+  jumpAction: {fileID: 3863988705517655865, guid: 5e67823000d07a0469c39287d9a21608,
     type: 3}
-  IsMoving: 0
-  IsGrounded: 0
-  MouseSens: {x: 40, y: 40}
-  ForceModifier: 5
-  MoveSpeed: 5
-  JumpForce: 1
+  jumpForce: 1.2
+  jumpCooldown: 1
+  airMultiplier: 1
+  readyToJump: 1
