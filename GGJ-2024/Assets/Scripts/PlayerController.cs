@@ -10,10 +10,14 @@ public class PlayerController : NetworkBehaviour
 {
     private Rigidbody _playerRb;
 
+    [SerializeField] public GameObject playerModel;
+
     [SerializeField] public Transform orientation;
     
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
+
+    [SerializeField] public InputActionReference attack;
     
     [SerializeField] private float dragCoef;
 
@@ -58,6 +62,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
+    public bool isAttacking;
 
     private void Update()
     {
@@ -71,9 +76,18 @@ public class PlayerController : NetworkBehaviour
         _rotation.x = Mathf.Clamp(_rotation.x, -90f, 90f);
 
         // TODO: Remove camera rotation.
-        playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
+        //playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
         
-        orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+        //orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+
+        if (attack.action.triggered)
+        {
+            isAttacking = true;
+        }
+        else
+        {
+            isAttacking = false;
+        }
     }
 
     [SerializeField] private bool isGrounded;
@@ -103,7 +117,7 @@ public class PlayerController : NetworkBehaviour
 
     [SerializeField] private float forceModifier = 5f;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private bool isMoving;
+    [SerializeField] public bool isMoving;
     public void MovePlayer()
     {
         var movement = moveAction.ReadValue<Vector2>();
@@ -156,5 +170,7 @@ public class PlayerController : NetworkBehaviour
         {
             _playerRb.AddForce(direction.normalized * (forceModifier * force * airMultiplier), mode);
         }
+
+        playerModel.transform.forward = direction.normalized;
     }
 }
