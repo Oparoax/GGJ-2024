@@ -4,6 +4,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+using FishNet.Component.Animating;
 using FishNet.Object;
 
 public class PlayerController : NetworkBehaviour
@@ -62,7 +63,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
-    public bool isAttacking;
+    public NetworkAnimator _networkAnimator;
 
     private void Update()
     {
@@ -82,11 +83,7 @@ public class PlayerController : NetworkBehaviour
 
         if (attack.action.triggered)
         {
-            isAttacking = true;
-        }
-        else
-        {
-            isAttacking = false;
+            _networkAnimator.SetTrigger("Attack");
         }
     }
 
@@ -126,6 +123,9 @@ public class PlayerController : NetworkBehaviour
         {
             isMoving = true;
 
+            _playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+            _playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+
             var movHor = movement.x;
             var movVert = movement.y;
 
@@ -136,6 +136,7 @@ public class PlayerController : NetworkBehaviour
         else
         {
             isMoving = false;
+            _playerRb.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 
