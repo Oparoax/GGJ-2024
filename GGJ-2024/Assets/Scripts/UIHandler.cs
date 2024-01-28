@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using FishNet.Object;
 using FishNet.Connection;
 using FishNet.Object.Synchronizing;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine.Serialization;
 
@@ -42,11 +43,11 @@ public class UIHandler : NetworkBehaviour
     [Header("Timer")]
     [SerializeField] public float totalGameTime = 120f;
     [SerializeField] public string gameTimeFormatted;
-    [SerializeField] public TextMesh gameTimerText;
+    [SerializeField] public TMP_Text gameTimerText;
 
     [Header("Lives")] 
-    [SerializeField] public TextMesh player1Lives;
-    [SerializeField] public TextMesh player2Lives;
+    [SerializeField] public TMP_Text player1Lives;
+    [SerializeField] public TMP_Text player2Lives;
     
     [Header("End Game Screen")]
     [SerializeField] public GameObject endGameScreen;
