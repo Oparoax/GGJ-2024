@@ -31,6 +31,9 @@ public class PlayerController : NetworkBehaviour
 
     public UIHandler UIHandlerSC;
 
+    public Material RedClownMat, RedClownHair;
+    public GameObject ClownModel;
+
 
     public override void OnStartClient()
     {
@@ -40,6 +43,10 @@ public class PlayerController : NetworkBehaviour
         {
             //Debug.Log("NOT THE OWNER 2 second start");
             //StartCoroutine(WaitForSeconds(2f));
+
+            ClownModel.GetComponent<Renderer>().material = RedClownMat;
+
+
             this.gameObject.GetComponent<PlayerController>().enabled = false;
             return;
         }
