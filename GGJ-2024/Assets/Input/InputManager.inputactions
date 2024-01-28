@@ -219,6 +219,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6b688b47-1b24-4716-9629-8cd47dc5f784",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeapons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "5299e4e5-5dc1-4322-932d-7815a2b6d215",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
