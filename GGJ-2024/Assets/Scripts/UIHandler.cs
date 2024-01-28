@@ -280,7 +280,7 @@ public class UIHandler : NetworkBehaviour
     {
         var timeToDisplay = totalGameTime - elapsedTime;
 
-        var minutes = Mathf.RoundToInt(timeToDisplay / 60) ;
+        var minutes = Math.Floor(timeToDisplay / 60) ;
         var seconds = timeToDisplay % 60;
 
         return string.Format("{0:00}:{1:00}", minutes, seconds);;
