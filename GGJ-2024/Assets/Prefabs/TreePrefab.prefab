@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 576190925276452752}
   - component: {fileID: 3043222938193747391}
   - component: {fileID: 2639247960637299965}
+  - component: {fileID: 7434068738796859839}
   m_Layer: 0
   m_Name: TreeTrunk
   m_TagString: Untagged
@@ -3437,11 +3438,34 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!136 &7434068738796859839
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447166091584369022}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0758238
+  m_Height: 5.5577483
+  m_Direction: 1
+  m_Center: {x: 0.50000006, y: 1.1367843, z: 0.5000003}
 --- !u!1 &4924331228060214315
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,6 +3480,7 @@ GameObject:
   - component: {fileID: 86391907976188391}
   - component: {fileID: 3039781772765550920}
   - component: {fileID: 1147762580635434549}
+  - component: {fileID: 2517356831247532101}
   m_Layer: 0
   m_Name: TreeBush
   m_TagString: Untagged
@@ -5732,11 +5757,34 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!136 &2517356831247532101
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4924331228060214315}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0.49999976, y: 0.5, z: 0.50000006}
 --- !u!1 &6235241174610723778
 GameObject:
   m_ObjectHideFlags: 0
@@ -8027,7 +8075,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -8046,6 +8094,7 @@ GameObject:
   - component: {fileID: 8772036508076405596}
   - component: {fileID: 6033897540494254736}
   - component: {fileID: 5849987073619312010}
+  - component: {fileID: 8126913064303273148}
   m_Layer: 0
   m_Name: TreeBush
   m_TagString: Untagged
@@ -10322,11 +10371,34 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!136 &8126913064303273148
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723025994217549326}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 0.99999994
+  m_Direction: 1
+  m_Center: {x: 0.49999985, y: 0.49999997, z: 0.5}
 --- !u!1 &6841755320107471048
 GameObject:
   m_ObjectHideFlags: 0
@@ -10341,6 +10413,7 @@ GameObject:
   - component: {fileID: 5474823960535015912}
   - component: {fileID: 854540191886370225}
   - component: {fileID: 2738748264165755001}
+  - component: {fileID: 1225308701121137018}
   m_Layer: 0
   m_Name: TreeBush
   m_TagString: Untagged
@@ -12617,11 +12690,34 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!136 &1225308701121137018
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841755320107471048}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0.5000001, y: 0.5, z: 0.4999999}
 --- !u!1 &8334090295770165958
 GameObject:
   m_ObjectHideFlags: 0
@@ -12652,5 +12748,5 @@ Transform:
   m_Children:
   - {fileID: 7088071529536276053}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
