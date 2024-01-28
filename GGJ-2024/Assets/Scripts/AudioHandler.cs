@@ -34,12 +34,32 @@ public class AudioHandler : MonoBehaviour
         player.mute = false;
     }
 
+    public void PlayStretchSound()
+    {
+        PlaySound(SOUND_EFFECT.STRETCH);
+    }
+    
+    public void PlaySqueakSound()
+    {
+        PlaySound(SOUND_EFFECT.SQUEAK);
+    }
+
+    public void PlayInflateSound()
+    {
+        PlaySound(SOUND_EFFECT.INFLATE);
+    }
+
+    public void PlayBopSound()
+    {
+        PlaySound(SOUND_EFFECT.BOP);
+    }
+
     /// <summary>
     /// To play a sound effect just invoke method with enum variable for which sound you require.
     /// </summary>
     /// <param name="sound"></param>
     /// <exception cref="ArgumentOutOfRangeException"></exception>
-    public void PlaySound(SOUND_EFFECT sound)
+    private void PlaySound(SOUND_EFFECT sound)
     {
         if (!player.isPlaying)
         {
