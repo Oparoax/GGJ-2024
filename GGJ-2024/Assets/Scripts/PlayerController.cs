@@ -16,6 +16,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] public GameObject playerModel;
 
     [SerializeField] public Transform orientation;
+    [SerializeField] public Transform playerSpawn;
 
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
@@ -165,6 +166,13 @@ public class PlayerController : NetworkBehaviour
         isGrounded = GroundCheck();
 
         //_playerRb.drag = isGrounded ? dragCoef : 0f;
+    }
+
+    [SerializeField] public int LivesLost = 0;
+    public void Respawn()
+    {
+        gameObject.transform.position = playerSpawn.position;
+        LivesLost++;
     }
 
     RaycastHit _raycastHit;

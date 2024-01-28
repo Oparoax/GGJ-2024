@@ -17,7 +17,7 @@ public class DeathFloor : MonoBehaviour
         var player = other.GameObject().GetComponent<PlayerController>();
         if (player != null)
         {
-            // Todo: Link to player method call that will kill then respawn player.
+            player.Respawn();
         }
     }
 }
