@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 6
+  _componentIndexCache: 8
   _addedNetworkObject: {fileID: 18102451793219243}
   _networkObjectCache: {fileID: 18102451793219243}
   IgnoredParameters: []
@@ -988,6 +988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c0a05988b4441ec8743d06f2a1f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 9
+  _addedNetworkObject: {fileID: 18102451793219243}
+  _networkObjectCache: {fileID: 18102451793219243}
   playerControllerSC: {fileID: 3449388134715042606}
 --- !u!114 &5838846515970688530
 MonoBehaviour:
@@ -3723,6 +3726,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6542217238938790652, guid: 57d8e342412564b6b83ff41663c4ff86,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 16.599976
+      objectReference: {fileID: 0}
     - target: {fileID: 6977155755752448613, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3831,12 +3839,17 @@ PrefabInstance:
     - target: {fileID: 6980936142744099043, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7089713134282228596, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234104594702505276, guid: 57d8e342412564b6b83ff41663c4ff86,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -17.599976
       objectReference: {fileID: 0}
     - target: {fileID: 8841767229522302282, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
@@ -4042,7 +4055,7 @@ PrefabInstance:
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _networkBehaviours.Array.size
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
@@ -4073,17 +4086,27 @@ PrefabInstance:
         type: 3}
       propertyPath: _networkBehaviours.Array.data[5]
       value: 
-      objectReference: {fileID: 51118002488694965}
+      objectReference: {fileID: 3930203896558714793}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _networkBehaviours.Array.data[6]
       value: 
-      objectReference: {fileID: 7810480376837905492}
+      objectReference: {fileID: 51118002488694965}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _networkBehaviours.Array.data[7]
       value: 
+      objectReference: {fileID: 6267408381982406867}
+    - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: _networkBehaviours.Array.data[8]
+      value: 
       objectReference: {fileID: 7810480376837905492}
+    - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
+        type: 3}
+      propertyPath: _networkBehaviours.Array.data[9]
+      value: 
+      objectReference: {fileID: 4558457956974654512}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: <ParentNetworkObject>k__BackingField
@@ -5683,6 +5706,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c0a05988b4441ec8743d06f2a1f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 5
+  _addedNetworkObject: {fileID: 18102451793219243}
+  _networkObjectCache: {fileID: 18102451793219243}
   playerControllerSC: {fileID: 3449388134715042606}
 --- !u!4 &5631842703914753622 stripped
 Transform:
@@ -5981,7 +6007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 5
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 18102451793219243}
   _networkObjectCache: {fileID: 18102451793219243}
   IgnoredParameters: []
@@ -6002,6 +6028,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c0a05988b4441ec8743d06f2a1f1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 7
+  _addedNetworkObject: {fileID: 18102451793219243}
+  _networkObjectCache: {fileID: 18102451793219243}
   playerControllerSC: {fileID: 3449388134715042606}
 --- !u!4 &8939781050162451781 stripped
 Transform:

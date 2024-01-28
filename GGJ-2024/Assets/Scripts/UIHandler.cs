@@ -154,16 +154,16 @@ public class UIHandler : NetworkBehaviour
     void CharacterMenu()
     {
         // Switches character portrait.
-        if (isPlayer1)
-        {
-            leftButton.GameObject().SetActive(true);
-            rightButton.GameObject().SetActive(false);
-        }
-        else if (isPlayer2)
-        {
-            leftButton.GameObject().SetActive(false);
-            rightButton.GameObject().SetActive(true);
-        }
+        //if (isPlayer1)
+        //{
+        //    leftButton.GameObject().SetActive(true);
+        //    rightButton.GameObject().SetActive(false);
+        //}
+        //else if (isPlayer2)
+        //{
+        //    leftButton.GameObject().SetActive(false);
+        //    rightButton.GameObject().SetActive(true);
+        //}
         
         if (Input.anyKeyDown)
         {
