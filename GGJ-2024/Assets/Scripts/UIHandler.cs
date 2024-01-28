@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using FishNet.Object;
 using FishNet.Connection;
 using FishNet.Object.Synchronizing;
+using Unity.VisualScripting;
 
 enum ACTIVE_SCREEN
 {
@@ -139,7 +140,22 @@ public class UIHandler : NetworkBehaviour
 
     void CharacterMenu()
     {
-        if (_leftButtonIsClicked && _rightButtonIsClicked)
+        leftButton.image.raycastTarget = false;
+        rightButton.image.raycastTarget = false;
+        
+        // Switches character portrait.
+        if (isPlayer1)
+        {
+            leftButton.GameObject().SetActive(true);
+            rightButton.GameObject().SetActive(false);
+        }
+        else
+        {
+            leftButton.GameObject().SetActive(false);
+            rightButton.GameObject().SetActive(true);
+        }
+        
+        if (Input.anyKeyDown)
         {
             SwitchMenu(ACTIVE_SCREEN.LOADING);
         }
