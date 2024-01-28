@@ -149,18 +149,20 @@ public class UIHandler : NetworkBehaviour
     {
         _leftButtonIsClicked = true;
 
-        // turns blue on locally
-        player.transform.GetChild(1).gameObject.SetActive(true);
-        if (isPlayer1)
-        {
-            RPCUpdatePlayer2(1);
-        }
-        else if (isPlayer2)
-        {
-            RPCUpdatePlayer1(1);
-        }
+        //// turns blue on locally
+        //player.transform.GetChild(1).gameObject.SetActive(true);
+        //if (isPlayer1)
+        //{
+        //    RPCUpdatePlayer2(1);
+        //}
+        //else if (isPlayer2)
+        //{
+        //    RPCUpdatePlayer1(1);
+        //}
 
-        RPCUpdateLButtonClicked();
+        //RPCUpdateLButtonClicked();
+
+
 
     }
 
@@ -168,60 +170,55 @@ public class UIHandler : NetworkBehaviour
     {
         _rightButtonIsClicked = true;
 
-        // turns red on locally
-        player.transform.GetChild(0).gameObject.SetActive(true);
-        if (isPlayer1)
-        {
-            RPCUpdatePlayer2(0);
-        }
-        else if (isPlayer2)
-        {
-            RPCUpdatePlayer1(0);
-        }
+        //// turns red on locally
+        //player.transform.GetChild(0).gameObject.SetActive(true);
+        //if (isPlayer1)
+        //{
+        //    RPCUpdatePlayer2(0);
+        //}
+        //else if (isPlayer2)
+        //{
+        //    RPCUpdatePlayer1(0);
+        //}
 
-        RPCUpdateRButtonClicked();
+        //RPCUpdateRButtonClicked();
 
     }
 
-    [ServerRpc(RequireOwnership = false)] private void RPCUpdateLButtonClicked() { LButtonClicked(); }
+    //[ServerRpc(RequireOwnership = false)] private void RPCUpdateLButtonClicked() { LButtonClicked(); }
 
-    [ObserversRpc]
-    void LButtonClicked() // red
-    {
-        player.transform.GetChild(1).gameObject.SetActive(true);
-        leftButton.interactable = false;
-    }
+    //[ObserversRpc]
+    //void LButtonClicked() // red
+    //{
+    //    player.transform.GetChild(1).gameObject.SetActive(true);
+    //    leftButton.interactable = false;
+    //}
 
-    [ServerRpc(RequireOwnership = false)] private void RPCUpdateRButtonClicked() { RButtonClicked(); }
+    //[ServerRpc(RequireOwnership = false)] private void RPCUpdateRButtonClicked() { RButtonClicked(); }
 
-    [ObserversRpc]
-    void RButtonClicked() // blue
-    {
-        player.transform.GetChild(0).gameObject.SetActive(true);
-        rightButton.interactable = false;
-    }
+    //[ObserversRpc]
+    //void RButtonClicked() // blue
+    //{
+    //    player.transform.GetChild(0).gameObject.SetActive(true);
+    //    rightButton.interactable = false;
+    //}
 
-    [ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer1(int num) { UpdatePlayer1(num); }
+    //[ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer1(int num) { UpdatePlayer1(num); }
 
-    [ObserversRpc]
-    void UpdatePlayer1(int num) // red
-    {
-        player1.transform.GetChild(num).gameObject.SetActive(true);
+    //[ObserversRpc]
+    //void UpdatePlayer1(int num) // red
+    //{
+    //    player1.transform.GetChild(num).gameObject.SetActive(true);
         
-    }
+    //}
 
-    [ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer2(int num) { UpdatePlayer2(num); }
+    //[ServerRpc(RequireOwnership = false)] private void RPCUpdatePlayer2(int num) { UpdatePlayer2(num); }
 
-    [ObserversRpc]
-    void UpdatePlayer2(int num) // blue
-    {
-        player2.transform.GetChild(num).gameObject.SetActive(true);
-    }
-
-
-
-
-
+    //[ObserversRpc]
+    //void UpdatePlayer2(int num) // blue
+    //{
+    //    player2.transform.GetChild(num).gameObject.SetActive(true);
+    //}
 
 
     private float _elapsedTime = 0f;

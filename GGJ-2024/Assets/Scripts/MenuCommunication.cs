@@ -43,6 +43,15 @@ public class MenuCommunication : NetworkBehaviour
     [ObserversRpc]
     private void SetPlayers()
     {
-        
+        if (UIHandlerSC.player1 == null)
+        {
+            this.gameObject.GetComponent<PlayerController>().blueModel.SetActive(true);
+
+        }
+        else if (UIHandlerSC.player2 == null)
+        {
+            this.gameObject.GetComponent<PlayerController>().redModel.SetActive(true);
+
+        }
     }
 }
