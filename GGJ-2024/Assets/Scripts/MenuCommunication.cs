@@ -6,12 +6,11 @@ using FishNet.Object;
 public class MenuCommunication : NetworkBehaviour
 {
     public UIHandler UIHandlerSC;
-
+    public PlayerCount PlayerCountSC;
 
     public override void OnStartClient()
     {
-        base.OnStartClient();
-   
+        PlayerCountSC = GameObject.Find("PlayerCounter").GetComponent<PlayerCount>();
         UIHandlerSC = GameObject.Find("MenuHandler").GetComponent<UIHandler>();
 
         if (UIHandlerSC.player == null)
@@ -19,39 +18,48 @@ public class MenuCommunication : NetworkBehaviour
             UIHandlerSC.player = this.gameObject;
         }
 
-        RPCSetPlayers();
+        if (IsOwner)
+        {
+            Debug.Log("Setting player numbers");
+            RPCSetPlayers();
+        }
     }
+
 
     [ServerRpc(RequireOwnership = false)]
     private void RPCSetPlayers()
     {
-        if (UIHandlerSC.player1 == null)
+        if (!PlayerCountSC.isPlayer1 && UIHandlerSC.player1 == null)
         {
             UIHandlerSC.isPlayer1 = true;
             UIHandlerSC.player1 = this.gameObject;
-            
+            PlayerCountSC.isPlayer1 = true;
+
+            SetPlayers1();
         }
-        else if (UIHandlerSC.player2 == null)
+        else if (!PlayerCountSC.isPlayer2 && UIHandlerSC.player2 == null)
         {
             UIHandlerSC.isPlayer2 = true;
             UIHandlerSC.player2 = this.gameObject;
+            PlayerCountSC.isPlayer2 = true;
+
+            SetPlayers2();
             
         }
-        SetPlayers();
+
+        //SetPlayers();
     }
 
     [ObserversRpc]
-    private void SetPlayers()
+    private void SetPlayers1()
     {
-        if (UIHandlerSC.player1 == null)
-        {
-            this.gameObject.GetComponent<PlayerController>().blueModel.SetActive(true);
+        this.gameObject.GetComponent<PlayerModel>().blue = true;
+            
+    }
 
-        }
-        else if (UIHandlerSC.player2 == null)
-        {
-            this.gameObject.GetComponent<PlayerController>().redModel.SetActive(true);
-
-        }
+    [ObserversRpc]
+    private void SetPlayers2()
+    {
+        this.gameObject.GetComponent<PlayerModel>().red = true;
     }
 }
