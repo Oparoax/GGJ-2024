@@ -38,8 +38,15 @@ public class UIHandler : NetworkBehaviour
     
     [Header("In Game UI Objects")]
     [SerializeField] public GameObject inGameScreen;
+    
+    [Header("Timer")]
     [SerializeField] public float totalGameTime = 120f;
     [SerializeField] public string gameTimeFormatted;
+    [SerializeField] public TextMesh gameTimerText;
+
+    [Header("Lives")] 
+    [SerializeField] public TextMesh player1Lives;
+    [SerializeField] public TextMesh player2Lives;
     
     [Header("End Game Screen")]
     [SerializeField] public GameObject endGameScreen;
@@ -272,7 +279,9 @@ public class UIHandler : NetworkBehaviour
         {
             _elapsedTimeInGame += Time.deltaTime;
             gameTimeFormatted = GetCurrentGameTimer(_elapsedTimeInGame);
+            gameTimerText.text = gameTimeFormatted;
         }
+        
         
     }
     
