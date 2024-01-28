@@ -5,11 +5,14 @@ using FishNet.Object;
 
 public class IfOwnerNotActive : NetworkBehaviour
 {
+    [SerializeField] GameObject ObjToTurnOn;
+
+
     public void OnStartClient()
     {
-        if (!IsOwner)
+        if (!ObjToTurnOn.activeInHierarchy)
         {
-            this.gameObject.SetActive(false);
+            ObjToTurnOn.SetActive(true);
         }
     }
 }

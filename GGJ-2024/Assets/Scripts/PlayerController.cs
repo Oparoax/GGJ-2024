@@ -22,6 +22,10 @@ public class PlayerController : NetworkBehaviour
     
     [SerializeField] private float dragCoef;
 
+    public bool blue, red;
+    public NetworkAnimator _BlueNetworkAnimator, _RedNetworkAnimator;
+    public GameObject blueModel, redModel;
+
 
     public override void OnStartClient()
     {
@@ -33,7 +37,6 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        _networkAnimator = GameObject.FindWithTag("Model").GetComponent<NetworkAnimator>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -65,7 +68,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
-    public NetworkAnimator _networkAnimator;
+    
 
     private void Update()
     {
@@ -85,7 +88,14 @@ public class PlayerController : NetworkBehaviour
 
         if (attack.action.triggered)
         {
-            _networkAnimator.SetTrigger("Attack");
+            if (blue)
+            {
+                _BlueNetworkAnimator.SetTrigger("Attack");
+            }
+            if (red)
+            {
+                _RedNetworkAnimator.SetTrigger("Attack");
+            }
         }
     }
 
