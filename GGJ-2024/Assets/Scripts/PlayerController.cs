@@ -16,18 +16,18 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] public GameObject playerModel;
 
     [SerializeField] public Transform orientation;
-    
+
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
 
     [SerializeField] public InputActionReference attack;
     public bool isAttacking;
-    
+
     [SerializeField] private float dragCoef;
 
-    public bool blue, red;
-    public NetworkAnimator _BlueNetworkAnimator, _RedNetworkAnimator;
-    public GameObject blueModel, redModel;
+    public bool blue;// red;
+    public NetworkAnimator _BlueNetworkAnimator; // _RedNetworkAnimator;
+    public GameObject blueModel; // redModel;
 
     public UIHandler UIHandlerSC;
 
@@ -58,7 +58,7 @@ public class PlayerController : NetworkBehaviour
         //StartCoroutine(WaitForSeconds(2f));
     }
 
-    
+
     //public IEnumerator WaitForSeconds(float seconds)
     //{
     //    yield return new WaitForSeconds(seconds);
@@ -70,7 +70,7 @@ public class PlayerController : NetworkBehaviour
     //{
     //    SetPlayers();
     //}
-    
+
 
     //[ObserversRpc]
     //private void SetPlayers()
@@ -110,7 +110,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
-    
+
 
     private void Update()
     {
@@ -129,21 +129,19 @@ public class PlayerController : NetworkBehaviour
 
         // TODO: Remove camera rotation.
         //playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
-        
+
         //orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
 
         if (attack.action.triggered)
         {
             isAttacking = true;
 
-            if (blue)
-            {
-                _BlueNetworkAnimator.SetTrigger("Attack");
-            }
-            if (red)
-            {
-                _RedNetworkAnimator.SetTrigger("Attack");
-            }
+            _BlueNetworkAnimator.SetTrigger("Attack");
+
+            //if (red)
+            //{
+            //    _RedNetworkAnimator.SetTrigger("Attack");
+            //}
         }
     }
 
@@ -156,7 +154,7 @@ public class PlayerController : NetworkBehaviour
         {
             Jump();
         }
-        
+
         isGrounded = GroundCheck();
 
         //_playerRb.drag = isGrounded ? dragCoef : 0f;
@@ -166,8 +164,8 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] LayerMask floorMask;
     private bool GroundCheck()
     {
-        return Physics.Raycast(gameObject.transform.position, 
-                            Vector3.down, out _raycastHit, 
+        return Physics.Raycast(gameObject.transform.position,
+                            Vector3.down, out _raycastHit,
                             2f * 0.5f + 0.2f,
                                 floorMask);
     }
@@ -183,8 +181,9 @@ public class PlayerController : NetworkBehaviour
         {
             isMoving = true;
 
-            _playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
-            _playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+            //_playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+            //_playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+            RPCConstraintsMove();
 
             var movHor = movement.x;
             var movVert = movement.y;
@@ -196,8 +195,32 @@ public class PlayerController : NetworkBehaviour
         else
         {
             isMoving = false;
-            _playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+            //_playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+            RPCConstraintsIdle();
         }
+    }
+
+    [ServerRpc] private void RPCConstraintsMove()
+    {
+        ConstraintsMove();
+    }
+
+    [ObserversRpc] private void ConstraintsMove()
+    {
+        _playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+        _playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+    }
+
+    [ServerRpc]
+    private void RPCConstraintsIdle()
+    {
+        ConstraintsIdle();
+    }
+
+    [ObserversRpc]
+    private void ConstraintsIdle()
+    {
+        _playerRb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     [SerializeField] private InputActionReference jumpAction;

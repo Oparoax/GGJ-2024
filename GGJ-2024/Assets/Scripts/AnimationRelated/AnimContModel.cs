@@ -4,7 +4,7 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Component.Animating;
 
-public class AnimContModel : MonoBehaviour
+public class AnimContModel : NetworkBehaviour
 {
     public PlayerController playerControllerSC;
     private Animator _animator;
@@ -20,11 +20,35 @@ public class AnimContModel : MonoBehaviour
     {
         if (playerControllerSC.isMoving)
         {
-            _animator.SetBool("Walking", true);
+            RPCWalkStateOn();
+            //_animator.SetBool("Walking", true);
         }
         else
         {
-            _animator.SetBool("Walking", false);
+            RPCWalkStateOff();
+            //_animator.SetBool("Walking", false);
         }
+    }
+
+    [ServerRpc] private void RPCWalkStateOn()
+    {
+        WalkStateOn();
+    }
+
+    [ObserversRpc] private void WalkStateOn()
+    {
+        _animator.SetBool("Walking", true);
+    }
+
+    [ServerRpc]
+    private void RPCWalkStateOff()
+    {
+        WalkStateOff();
+    }
+
+    [ObserversRpc]
+    private void WalkStateOff()
+    {
+        _animator.SetBool("Walking", false);
     }
 }

@@ -6,11 +6,11 @@ using FishNet.Object;
 public class MenuCommunication : NetworkBehaviour
 {
     public UIHandler UIHandlerSC;
-    public PlayerCount PlayerCountSC;
+    //public PlayerCount PlayerCountSC;
 
     public override void OnStartClient()
     {
-        PlayerCountSC = GameObject.Find("PlayerCounter").GetComponent<PlayerCount>();
+        //PlayerCountSC = GameObject.Find("PlayerCounter").GetComponent<PlayerCount>();
         UIHandlerSC = GameObject.Find("MenuHandler").GetComponent<UIHandler>();
 
         if (UIHandlerSC.player == null)
@@ -29,21 +29,21 @@ public class MenuCommunication : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     private void RPCSetPlayers()
     {
-        if (!PlayerCountSC.isPlayer1 && UIHandlerSC.player1 == null)
+        if (UIHandlerSC.player1 == null)
         {
             UIHandlerSC.isPlayer1 = true;
             UIHandlerSC.player1 = this.gameObject;
-            PlayerCountSC.isPlayer1 = true;
+            //PlayerCountSC.isPlayer1 = true;
 
-            SetPlayers1();
+            //SetPlayers1();
         }
-        else if (!PlayerCountSC.isPlayer2 && UIHandlerSC.player2 == null)
+        else if (UIHandlerSC.player2 == null)
         {
             UIHandlerSC.isPlayer2 = true;
             UIHandlerSC.player2 = this.gameObject;
-            PlayerCountSC.isPlayer2 = true;
+            //PlayerCountSC.isPlayer2 = true;
 
-            SetPlayers2();
+            //SetPlayers2();
             
         }
 

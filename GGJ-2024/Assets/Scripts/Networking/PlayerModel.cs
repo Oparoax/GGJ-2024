@@ -45,14 +45,14 @@ public class PlayerModel : NetworkBehaviour
         if (playerCountSC.isPlayer1)
         {
             Debug.Log("Turning on red");
-            this.gameObject.GetComponent<PlayerController>().red = true;
-            this.gameObject.GetComponent<PlayerController>().redModel.SetActive(true);
+            this.gameObject.GetComponent<PlayerController>().blue = true;
+            this.gameObject.GetComponent<PlayerController>().blueModel.SetActive(true);
         }
         else if (playerCountSC.isPlayer2)
         {
             Debug.Log("Turning on blue");
-            this.gameObject.GetComponent<PlayerController>().red = false;
-            this.gameObject.GetComponent<PlayerController>().redModel.SetActive(false);
+            this.gameObject.GetComponent<PlayerController>().blue = false;
+            this.gameObject.GetComponent<PlayerController>().blueModel.SetActive(false);
 
         }
     }
