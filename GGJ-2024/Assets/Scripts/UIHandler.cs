@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +7,7 @@ using FishNet.Object;
 using FishNet.Connection;
 using FishNet.Object.Synchronizing;
 using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 enum ACTIVE_SCREEN
 {
@@ -36,6 +38,15 @@ public class UIHandler : NetworkBehaviour
     
     [Header("In Game UI Objects")]
     [SerializeField] public GameObject inGameScreen;
+    
+    [Header("Timer")]
+    [SerializeField] public float totalGameTime = 120f;
+    [SerializeField] public string gameTimeFormatted;
+    [SerializeField] public TextMesh gameTimerText;
+
+    [Header("Lives")] 
+    [SerializeField] public TextMesh player1Lives;
+    [SerializeField] public TextMesh player2Lives;
     
     [Header("End Game Screen")]
     [SerializeField] public GameObject endGameScreen;
@@ -120,6 +131,7 @@ public class UIHandler : NetworkBehaviour
                 LoadingScreen();
                 break;
             case (ACTIVE_SCREEN.IN_GAME):
+                InGameScreen();
                 break;
             case (ACTIVE_SCREEN.END_GAME):
                 break;
@@ -140,16 +152,13 @@ public class UIHandler : NetworkBehaviour
 
     void CharacterMenu()
     {
-        leftButton.image.raycastTarget = false;
-        rightButton.image.raycastTarget = false;
-        
         // Switches character portrait.
         if (isPlayer1)
         {
             leftButton.GameObject().SetActive(true);
             rightButton.GameObject().SetActive(false);
         }
-        else
+        else if (isPlayer2)
         {
             leftButton.GameObject().SetActive(false);
             rightButton.GameObject().SetActive(true);
@@ -236,18 +245,54 @@ public class UIHandler : NetworkBehaviour
     //    player2.transform.GetChild(num).gameObject.SetActive(true);
     //}
 
-
-    private float _elapsedTime = 0f;
+    private float _elapsedTimeLoadingScreen = 0f;
     void LoadingScreen()
     {
-        if (_elapsedTime >= waitTime)
+        if (_elapsedTimeLoadingScreen >= waitTime)
         {
             SwitchMenu(ACTIVE_SCREEN.IN_GAME);
         }
         else
         {
-            _elapsedTime += Time.deltaTime;
+            _elapsedTimeLoadingScreen += Time.deltaTime;
         }
+    }
+
+    private float _elapsedTimeInGame = 0f;
+    private bool trackSwitched = false;
+    void InGameScreen()
+    {
+        if (!trackSwitched)
+        {
+            if (_elapsedTimeInGame > totalGameTime / 2)
+            {
+                SwitchTracks(fifthTrack);
+                trackSwitched = true;
+            }
+        }
+        
+        if (_elapsedTimeInGame > totalGameTime)
+        {
+            SwitchMenu(ACTIVE_SCREEN.END_GAME);
+        }
+        else
+        {
+            _elapsedTimeInGame += Time.deltaTime;
+            gameTimeFormatted = GetCurrentGameTimer(_elapsedTimeInGame);
+            gameTimerText.text = gameTimeFormatted;
+        }
+        
+        
+    }
+    
+    string GetCurrentGameTimer(float elapsedTime)
+    {
+        var timeToDisplay = totalGameTime - elapsedTime;
+
+        var minutes = Math.Floor(timeToDisplay / 60) ;
+        var seconds = timeToDisplay % 60;
+
+        return string.Format("{0:00}:{1:00}", minutes, seconds);;
     }
     
     /// <summary>
@@ -266,6 +311,9 @@ public class UIHandler : NetworkBehaviour
             case (ACTIVE_SCREEN.CHARACTER):
                 SwitchUI(characterMenu);
                 SwitchTracks(secondTrack);
+                
+                leftButton.image.raycastTarget = false;
+                rightButton.image.raycastTarget = false;
                 break;
             case (ACTIVE_SCREEN.LOADING):
                 SwitchUI(loadingScreen);
