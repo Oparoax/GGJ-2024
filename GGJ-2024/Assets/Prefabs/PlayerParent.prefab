@@ -230,7 +230,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 13
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 2175791345
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 14797281496072752529
 --- !u!114 &8296388202128270566
@@ -2742,6 +2742,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5709322901712160684}
     m_Modifications:
+    - target: {fileID: 1472627493088634632, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c6a649bc51c26422eb5bcae9a27b88af, type: 3}
+    - target: {fileID: 2695509915265916655, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d09b0b81b0f8e41e1b2fff34cf8fbfbb, type: 3}
+    - target: {fileID: 4991711757306824792, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 362a29cf0f70b466b8ae624bae00165e, type: 3}
+    - target: {fileID: 5419320490491538652, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d20a43531ccc84b019aafb65b8135cd4, type: 3}
+    - target: {fileID: 7417971628547449449, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4aca6fc29ac0048989ad521ccc7e565c, type: 3}
+    - target: {fileID: 7777884134067874626, guid: 19d349dd2c56e38439c2d0022232d85b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c679e83b2ea5c46429a08b27d9362f6d, type: 3}
     - target: {fileID: 8199837653088760409, guid: 19d349dd2c56e38439c2d0022232d85b,
         type: 3}
       propertyPath: m_RootOrder
@@ -2970,7 +3000,7 @@ PrefabInstance:
     - target: {fileID: 2780614614176907922, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
       propertyPath: _scenePathHash
-      value: 2175791345
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2780614614176907922, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
@@ -3000,7 +3030,7 @@ PrefabInstance:
     - target: {fileID: 2795907993405663502, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
       propertyPath: _scenePathHash
-      value: 2175791345
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2795907993405663502, guid: 57d8e342412564b6b83ff41663c4ff86,
         type: 3}
@@ -4590,7 +4620,7 @@ PrefabInstance:
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
       propertyPath: _scenePathHash
-      value: 2175791345
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3095297185377198418, guid: c813f2471888c3c4aa61136b98cc459a,
         type: 3}
