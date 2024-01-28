@@ -104,6 +104,9 @@ public class UIHandler : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         switch (_currentActiveScreen)
         {
             case (ACTIVE_SCREEN.START):
