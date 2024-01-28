@@ -52,6 +52,8 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
+        GameObject.Find("NetworkHudCanvas").GetComponent<Canvas>().enabled = false;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
