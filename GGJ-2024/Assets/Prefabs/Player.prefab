@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 5119787530164655275}
   - component: {fileID: 390217011272959191}
   - component: {fileID: 3764460028187870575}
+  - component: {fileID: 3095297185377198418}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -175,7 +176,7 @@ Transform:
   m_Children:
   - {fileID: 6507240053425154504}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1088831771862844715
 MeshFilter:
@@ -311,6 +312,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 82ef8069-9841-4fde-9456-f819109f449f
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 36840f36-ca77-4213-955e-07b3d4986b21
+    m_ActionName: Player/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -329,9 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 0
-  _addedNetworkObject: {fileID: 0}
-  _networkObjectCache: {fileID: 0}
-  orientation: {fileID: 1820046785142849167}
+  _addedNetworkObject: {fileID: 3095297185377198418}
+  _networkObjectCache: {fileID: 3095297185377198418}
+  orientation: {fileID: 0}
   playerInput: {fileID: 5119787530164655275}
   moveAction:
     m_Name: Move
@@ -343,7 +348,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   dragCoef: 5
-  playerCamera: {fileID: 1468150104641965011}
+  playerCamera: {fileID: 0}
   mouseSens: {x: 40, y: 40}
   isGrounded: 0
   floorMask:
@@ -374,6 +379,39 @@ MonoBehaviour:
   OnBalloonCollected:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3095297185377198418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1695269147205622623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 390217011272959191}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  SerializedTransformProperties:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 0
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 7807759643866311769
 --- !u!1 &5125656817525270865
 GameObject:
   m_ObjectHideFlags: 0

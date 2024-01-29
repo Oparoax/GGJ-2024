@@ -4,18 +4,36 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+using System.Collections;
+using System.Collections.Generic;
+using FishNet.Component.Animating;
 using FishNet.Object;
 
 public class PlayerController : NetworkBehaviour
 {
-    private Rigidbody _playerRb;
+    public Rigidbody _playerRb;
+
+    [SerializeField] public GameObject playerModel;
 
     [SerializeField] public Transform orientation;
-    
+    [SerializeField] public Transform playerSpawn;
+
     [SerializeField] public PlayerInput playerInput;
     [SerializeField] public InputAction moveAction;
-    
+
+    [SerializeField] public InputActionReference attack;
+    public bool isAttacking;
+
     [SerializeField] private float dragCoef;
+
+    public bool blue;// red;
+    public NetworkAnimator _BlueNetworkAnimator; // _RedNetworkAnimator;
+    public GameObject blueModel; // redModel;
+
+    public UIHandler UIHandlerSC;
+
+    public Material RedClownMat, RedClownHair;
+    public GameObject ClownModel;
 
 
     public override void OnStartClient()
@@ -24,9 +42,18 @@ public class PlayerController : NetworkBehaviour
 
         if (!IsOwner)
         {
+            //Debug.Log("NOT THE OWNER 2 second start");
+            //StartCoroutine(WaitForSeconds(2f));
+
+            ClownModel.GetComponent<Renderer>().material = RedClownMat;
+
+
             this.gameObject.GetComponent<PlayerController>().enabled = false;
             return;
         }
+
+        GameObject.Find("NetworkHudCanvas").GetComponent<Canvas>().enabled = false;
+        playerSpawn = GameObject.Find("Spawn").transform;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -37,7 +64,43 @@ public class PlayerController : NetworkBehaviour
         }
 
         moveAction = playerInput.actions["Movement"];
+
+        //Debug.Log("2 second start");
+        //StartCoroutine(WaitForSeconds(2f));
     }
+
+
+    //public IEnumerator WaitForSeconds(float seconds)
+    //{
+    //    yield return new WaitForSeconds(seconds);
+    //    RPCPlayerSet();
+    //}
+
+    //[ServerRpc(RequireOwnership = false)]
+    //private void RPCPlayerSet()
+    //{
+    //    SetPlayers();
+    //}
+
+
+    //[ObserversRpc]
+    //private void SetPlayers()
+    //{
+    //    Debug.Log("SET PLAYERS CALLED");
+    //    if (UIHandlerSC.player1)
+    //    {
+    //        Debug.Log("Turning on red");
+    //        this.gameObject.GetComponent<PlayerController>().red = true;
+    //        this.gameObject.GetComponent<PlayerController>().redModel.SetActive(true);
+    //    }
+    //    else if (UIHandlerSC.player2)
+    //    {
+    //        Debug.Log("Turning on blue");
+    //        this.gameObject.GetComponent<PlayerController>().red = false;
+    //        this.gameObject.GetComponent<PlayerController>().redModel.SetActive(false);
+
+    //    }
+    //}
 
 
     //    // Start is called before the first frame update
@@ -45,12 +108,12 @@ public class PlayerController : NetworkBehaviour
     //{
     //    Cursor.lockState = CursorLockMode.Locked;
     //    Cursor.visible = false;
-        
+
     //    if (_playerRb == null)
     //    {
     //        _playerRb = GetComponent<Rigidbody>();
     //    }
-        
+
     //    moveAction = playerInput.actions["Movement"];
     //}
 
@@ -59,8 +122,13 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Vector2 mouseSens;
     private Vector2 _rotation;
 
+
     private void Update()
     {
+        if (!IsOwner)
+        {
+            return;
+        }
         // TODO: Change to gamepad joystick.
         var mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * mouseSens.x;
         var mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * mouseSens.y;
@@ -71,9 +139,21 @@ public class PlayerController : NetworkBehaviour
         _rotation.x = Mathf.Clamp(_rotation.x, -90f, 90f);
 
         // TODO: Remove camera rotation.
-        playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
-        
-        orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+        //playerCamera.transform.rotation = Quaternion.Euler(_rotation.x, _rotation.y, 0);
+
+        //orientation.rotation = Quaternion.Euler(0, _rotation.y, 0);
+
+        if (attack.action.triggered)
+        {
+            isAttacking = true;
+
+            _BlueNetworkAnimator.SetTrigger("Attack");
+
+            //if (red)
+            //{
+            //    _RedNetworkAnimator.SetTrigger("Attack");
+            //}
+        }
     }
 
     [SerializeField] private bool isGrounded;
@@ -85,25 +165,32 @@ public class PlayerController : NetworkBehaviour
         {
             Jump();
         }
-        
+
         isGrounded = GroundCheck();
 
         //_playerRb.drag = isGrounded ? dragCoef : 0f;
+    }
+
+    [SerializeField] public int LivesLost = 0;
+    public void Respawn()
+    {
+        gameObject.transform.position = playerSpawn.position;
+        LivesLost++;
     }
 
     RaycastHit _raycastHit;
     [SerializeField] LayerMask floorMask;
     private bool GroundCheck()
     {
-        return Physics.Raycast(gameObject.transform.position, 
-                            Vector3.down, out _raycastHit, 
+        return Physics.Raycast(gameObject.transform.position,
+                            Vector3.down, out _raycastHit,
                             2f * 0.5f + 0.2f,
                                 floorMask);
     }
 
     [SerializeField] private float forceModifier = 5f;
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private bool isMoving;
+    [SerializeField] public bool isMoving;
     public void MovePlayer()
     {
         var movement = moveAction.ReadValue<Vector2>();
@@ -111,6 +198,10 @@ public class PlayerController : NetworkBehaviour
         if (movement != Vector2.zero)
         {
             isMoving = true;
+
+            //_playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+            //_playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+            RPCConstraintsMove();
 
             var movHor = movement.x;
             var movVert = movement.y;
@@ -122,7 +213,32 @@ public class PlayerController : NetworkBehaviour
         else
         {
             isMoving = false;
+            //_playerRb.constraints = RigidbodyConstraints.FreezeRotation;
+            RPCConstraintsIdle();
         }
+    }
+
+    [ServerRpc] private void RPCConstraintsMove()
+    {
+        ConstraintsMove();
+    }
+
+    [ObserversRpc] private void ConstraintsMove()
+    {
+        _playerRb.constraints = ~RigidbodyConstraints.FreezePosition;
+        _playerRb.constraints = RigidbodyConstraints.FreezeRotationY;
+    }
+
+    [ServerRpc]
+    private void RPCConstraintsIdle()
+    {
+        ConstraintsIdle();
+    }
+
+    [ObserversRpc]
+    private void ConstraintsIdle()
+    {
+        _playerRb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
     [SerializeField] private InputActionReference jumpAction;
@@ -156,5 +272,7 @@ public class PlayerController : NetworkBehaviour
         {
             _playerRb.AddForce(direction.normalized * (forceModifier * force * airMultiplier), mode);
         }
+
+        playerModel.transform.forward = direction.normalized;
     }
 }
