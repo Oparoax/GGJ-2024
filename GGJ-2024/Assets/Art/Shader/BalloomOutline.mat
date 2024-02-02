@@ -135,8 +135,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Dark_Colour: {r: 0.754717, g: 0, b: 0.22723648, a: 0}
+    - _Dark_Colour: {r: 0.7529412, g: 0.42277727, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Lit_Colour: {r: 0.8584906, g: 0.37447634, b: 0.2956123, a: 0}
+    - _Lit_Colour: {r: 0.85882354, g: 0.62557733, b: 0.29411772, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
